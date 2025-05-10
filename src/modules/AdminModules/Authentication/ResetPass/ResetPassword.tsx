@@ -14,7 +14,7 @@ const ResetPassword: React.FC = () => {
 
   const [resetPassword, { isLoading }] = useResetPasswordMutation();
 
-  const nvigate = useNavigate()
+  const nvigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -25,9 +25,9 @@ const ResetPassword: React.FC = () => {
     try {
       const res = await resetPassword(formData).unwrap();
       toast.success("Password reset successfully!");
-      setTimeout(()=>{
-        nvigate('/dashboard')
-      })
+      setTimeout(() => {
+        nvigate("/dashboard");
+      });
       console.log(res);
     } catch (err: any) {
       toast.error(err?.data?.message || "Something went wrong");
