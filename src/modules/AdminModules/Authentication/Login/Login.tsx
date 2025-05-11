@@ -1,15 +1,22 @@
 import { loginSchema, type LoginFormData } from "@/features/validationSchema";
 import LoginDialog from "./LoginDialog";
 import { useForm } from "react-hook-form";
-import type { SubmitHandler } from 'react-hook-form';
-import type { ErrorResponse } from '@/interfaces/errors.interfaces';
+import type { SubmitHandler } from "react-hook-form";
+import type { ErrorResponse } from "@/interfaces/errors.interfaces";
 import { toast } from "sonner";
 import PasswordInput from "@/components/form/PasswordInput";
 import SubmitButton from "@/components/form/SubmitButton";
 import { FaEnvelope, FaSpinner } from "react-icons/fa6";
 import { useState } from "react";
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { zodResolver } from "@hookform/resolvers/zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useLoginMutation } from "@/store/auth/AuthApi";
 import { useDispatch } from "react-redux";
@@ -19,17 +26,19 @@ import { Link, useNavigate } from "react-router-dom";
 export default function Login() {
   const [login] = useLoginMutation();
   const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     },
   });
 
-  const { formState: { isSubmitting } } = form;
+  const {
+    formState: { isSubmitting },
+  } = form;
 
   const onSubmit: SubmitHandler<LoginFormData> = async (values) => {
     try {
@@ -39,17 +48,18 @@ export default function Login() {
       const payload = { user: response?.data?.profile, token: response?.data?.accessToken }
       dispatch(setUser(payload))
       if (response?.data?.profile?.role == "Instructor") navigate('/dashboard')
-      if (response?.data?.profile?.role == "student") navigate('/home')
+      if (response?.data?.profile?.role == "learner") navigate('/home')
 
     } catch (error) {
-      toast.error((error as ErrorResponse)?.data?.message || "Error logging in")
+      toast.error(
+        (error as ErrorResponse)?.data?.message || "Error logging in"
+      );
     }
   };
 
   return (
     <>
-
-    <div className="bg-[#0D1321] text-white">
+    <div className="bg-[#0D1321] h-dvh text-white">
       <LoginDialog />
       <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-10">
@@ -94,8 +104,8 @@ export default function Login() {
               <p className="fw-bold"> Forget Password? <Link to={'/forget-password'} className="text-[#C5D86D]" >Click Here</Link></p>
             </div>
             </div>
-        </form>
-      </Form>
+          </form>
+        </Form>
       </div>
     </>
   );
