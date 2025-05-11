@@ -31,7 +31,7 @@ export default function AuthLayout() {
           <Outlet />
         </div>
 
-        <div className="flex justify-end ">
+        <div className="flex justify-end h-dvh ">
           <div className="bg-light_cream bg-[#FFEDDF] hidden p-8 md:flex justify-center items-center rounded-2xl">
             <img
               src={auth_pic}

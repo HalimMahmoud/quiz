@@ -10,7 +10,6 @@ export default function LoginDialog() {
     const isloginPage = useMemo(() => pathname === "/login", [pathname]);
   return (
     <div>
-      <h1 className='text-[#C5D86D] text-[25px]'>Continue your learning journey with QuizWiz!</h1>
       <div className="flex items-center gap-5 mt-5">
       <Card className={`px-10 bg-[#333] ${isloginPage? 'border-5 border-[#C5D86D]  text-[#C5D86D]':'text-white'}`} >
         <Link to={'/login'}>
