@@ -48,7 +48,9 @@ export default function Login() {
 
   return (
     <>
-    <div className="bg-[#0D1321]  text-white">
+
+<div className="bg-[#0D1321]  text-white">
+
       <LoginDialog />
       <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-10">
