@@ -39,7 +39,7 @@ export default function Login() {
       const payload = { user: response?.data?.profile, token: response?.data?.accessToken }
       dispatch(setUser(payload))
       if (response?.data?.profile?.role == "Instructor") navigate('/dashboard')
-      if (response?.data?.profile?.role == "learner") navigate('/home')
+      if (response?.data?.profile?.role == "student") navigate('/home')
 
     } catch (error) {
       toast.error((error as ErrorResponse)?.data?.message || "Error logging in")
@@ -48,7 +48,9 @@ export default function Login() {
 
   return (
     <>
-    <div className="bg-[#0D1321] text-white">
+
+<div className="bg-[#0D1321]  text-white">
+
       <LoginDialog />
       <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-10">
