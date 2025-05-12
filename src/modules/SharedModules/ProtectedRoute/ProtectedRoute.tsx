@@ -1,4 +1,4 @@
-import type { RootState } from "@/store/auth/AuthConfig";
+import type { RootState } from "@/store/auth/AuthLoaded";
 import type { ReactNode } from "react";
 import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";

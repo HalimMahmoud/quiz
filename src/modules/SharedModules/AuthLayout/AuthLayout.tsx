@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import logo from "../../../assets/Logo.png";
 import auth_pic from "../../../assets/auth-pic.png";
-import type { RootState } from "@/store/auth/AuthConfig";
+import type { RootState } from "@/store/auth/AuthLoaded";
 export default function AuthLayout() {
   const token = useSelector((state: RootState) => state.auth.token);
   const location = useLocation();

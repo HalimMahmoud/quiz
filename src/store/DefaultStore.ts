@@ -1,26 +1,18 @@
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./AuthSlice";
-import { authApi } from "./AuthApi";
+import { loadStateFromLocalStorage } from "./auth/AuthLoaded";
+import { authApi } from "./auth/AuthApi";
+import { questionApi } from "./questions/QuestionApi";
 
-const loadStateFromLocalStorage = () => {
-  const token = localStorage.getItem("token");
-  const user = localStorage.getItem("user");
-
-  return {
-    auth: {
-      token: token ? token : null,
-      user: user ? JSON.parse(user) : null,
-    },
-  };
-};
+import authReducer from "./auth/AuthSlice";
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     [authApi.reducerPath]: authApi.reducer,
+    [questionApi.reducerPath]: questionApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware),
+    getDefaultMiddleware().concat(authApi.middleware, questionApi.middleware),
 
   preloadedState: loadStateFromLocalStorage(), // Load data from localStorage into Redux store on initialization
 });
