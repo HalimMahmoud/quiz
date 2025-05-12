@@ -12,8 +12,31 @@ import Login from "./modules/AdminModules/Authentication/Login/Login";
 import StudentsList from "./modules/AdminModules/Students/StudentsList/StudentsList";
 
 import Group_crud from "./group_crud/Group_crud";
+import MasterLayout from "./modules/SharedModules/MasterLayout/MasterLayout";
+import Questions from "./modules/AdminModules/Questions/Questions";
+import ProtectedRoute from "./modules/SharedModules/ProtectedRoute/ProtectedRoute";
+import { useDispatch } from "react-redux";
+import { useLocalStorage } from "./store/auth/useLocalStorage";
+import { clearUser, setUser } from "./store/auth/AuthSlice";
+import { useEffect } from "react";
 
 function App() {
+  const dispatch = useDispatch();
+
+  // Using useLocalStorage to manage both token and user in localStorage
+  const [token] = useLocalStorage("token");
+  const [user] = useLocalStorage("user");
+
+  const decodedUser = JSON.parse(user as string);
+  useEffect(() => {
+    if (token && user) {
+      // If both token and user are found in localStorage, sync them with Redux store
+      dispatch(setUser({ user: decodedUser, token }));
+    } else {
+      // If no token or user data, clear from Redux
+      dispatch(clearUser());
+    }
+  }, [token, user, dispatch, decodedUser]);
   const router = createBrowserRouter([
     {
       path: "/",
@@ -31,8 +54,22 @@ function App() {
         { path: "forget-password", element: <ForgetPassword /> },
       ],
     },
-    {path:"student", element:<StudentsList/>},
+   
+    {
+      path: "/dashboard",
+      element: (
+        <ProtectedRoute>
+          <MasterLayout />
+        </ProtectedRoute>
+      ),
+      errorElement: <NotFound />,
+
+      children: [
+        { path: "questions", element: <Questions /> },
+          {path:"student", element:<StudentsList/>},
     { path: "group-crud", element: <Group_crud /> },
+      ],
+    },
   ]);
 
   return (

@@ -19,14 +19,13 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useLoginMutation } from "@/store/auth/AuthApi";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setUser } from "@/store/auth/AuthSlice";
-import { Link, useNavigate } from "react-router-dom";
-
 export default function Login() {
+  const dispatch = useDispatch();
   const [login] = useLoginMutation();
   const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useDispatch();
   const navigate = useNavigate();
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
@@ -50,6 +49,20 @@ export default function Login() {
       if (response?.data?.profile?.role == "Instructor") navigate('/dashboard')
       if (response?.data?.profile?.role == "learner") navigate('/home')
 
+      // localStorage.setItem("token", response?.data?.accessToken);
+      toast.success(response?.data?.message || "Logged in successfully");
+      const payload = {
+        user: response?.data?.profile,
+        token: response?.data?.accessToken,
+      };
+      // dispatch(setUser(payload));
+      localStorage.setItem("token", payload.token);
+      localStorage.setItem("user", JSON.stringify(payload.user));
+
+      dispatch(setUser({ user: payload.user, token: payload.token }));
+
+      if (response?.data?.profile?.role == "Instructor") navigate("/dashboard");
+      if (response?.data?.profile?.role == "learner") navigate("/home");
     } catch (error) {
       toast.error(
         (error as ErrorResponse)?.data?.message || "Error logging in"
