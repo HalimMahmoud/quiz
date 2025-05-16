@@ -1,6 +1,7 @@
 export const baseURL = "https://upskilling-egypt.com:3005/api/";
 
 export const USER_URLS = {
+
   LOGIN: `auth/login`,
   REGISTER: `auth/register`,
   FORGET_PASS: `auth/forgot-password`,
@@ -14,3 +15,4 @@ export const QUESTIONS_URLS = {
   UPDATE: (id: string) => `question/${id}`,
   DELETE: (id: string) => `question/${id}`,
 };
+
