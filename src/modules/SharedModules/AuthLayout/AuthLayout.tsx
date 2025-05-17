@@ -22,7 +22,7 @@ export default function AuthLayout() {
   };
   return (
     <>
-      <div className="grid md:grid-cols-2 bg-[#0D1321] w-full h-[100%] p-[50px]">
+      <div className="grid md:grid-cols-2 bg-[#0D1321] w-full  p-[50px]">
         <div>
           <div className="text-white mb-10">
             <img src={logo} alt="logo" />

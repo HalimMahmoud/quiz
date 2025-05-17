@@ -9,6 +9,8 @@ import ResetPassword from "./modules/AdminModules/Authentication/ResetPass/Reset
 import ForgetPassword from "./modules/AdminModules/Authentication/ForgetPassword/ForgetPassword";
 import NotFound from "./modules/SharedModules/NotFound/NotFound";
 import Login from "./modules/AdminModules/Authentication/Login/Login";
+import StudentsList from "./modules/AdminModules/Students/StudentsList/StudentsList";
+
 
 function App() {
   const router = createBrowserRouter([
@@ -18,7 +20,7 @@ function App() {
       errorElement: <NotFound />,
 
       children: [
-        { path: "login", element: <Login /> },
+        { index: true, element: <Login /> },
         { path: "register", element: <Register /> },
         { path: "change-password", element: <ChangePassword /> },
         { path: "verify-account", element: <VerifyAccount /> },
@@ -26,6 +28,7 @@ function App() {
         { path: "forget-password", element: <ForgetPassword /> },
       ],
     },
+    {path:"student", element:<StudentsList/>}
   ]);
 
   return (
