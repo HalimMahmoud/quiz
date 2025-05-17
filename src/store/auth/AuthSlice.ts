@@ -1,7 +1,20 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+
+type UserRole = "Instructor" | "Admin" | "Student";
+type UserStatus = "active" | "inactive";
+
+export type Profile = {
+  _id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  status: UserStatus;
+  role: UserRole;
+};
+
 interface UserState {
-  user: null | Record<string, any>;
+  user: null | Profile;
   token: string | null;
 }
 
@@ -14,7 +27,10 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    setUser: (state, action: PayloadAction<{ user: any; token: string }>) => {
+    setUser: (
+      state,
+      action: PayloadAction<{ user: Profile; token: string }>
+    ) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
     },
@@ -26,4 +42,5 @@ const authSlice = createSlice({
 });
 
 export const { setUser, clearUser } = authSlice.actions;
+
 export default authSlice.reducer;
