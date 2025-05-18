@@ -6,7 +6,6 @@ import { studentApi } from './StudentApi';
 =======
 import { configureStore } from "@reduxjs/toolkit";
 import { loadStateFromLocalStorage } from "./auth/AuthLoaded";
-import { authApi } from "./auth/AuthApi";
 import { questionApi } from "./questions/QuestionApi";
 >>>>>>> a3ed556 (makes questions crud and getall func working):src/store/DefaultStore.ts
 
