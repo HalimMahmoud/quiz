@@ -1,45 +1,33 @@
-<<<<<<< HEAD
-<<<<<<< HEAD:src/store/auth/AuthConfig.ts
 import { configureStore } from '@reduxjs/toolkit';
-import authReducer from './AuthSlice';
-import { authApi } from './AuthApi';
-import { studentApi } from './StudentApi';
-=======
-=======
->>>>>>> main
-import { configureStore } from "@reduxjs/toolkit";
-import { loadStateFromLocalStorage } from "./auth/AuthLoaded";
-import { authApi } from "./auth/AuthApi";
-import { questionApi } from "./questions/QuestionApi";
-<<<<<<< HEAD
->>>>>>> a3ed556 (makes questions crud and getall func working):src/store/DefaultStore.ts
-=======
->>>>>>> main
-
+import { studentApi } from './auth/StudentApi';
+import { questionApi } from './questions/QuestionApi';
+import { authApi } from './auth/AuthApi';
 import authReducer from "./auth/AuthSlice";
+
+
+const loadStateFromLocalStorage = () => {
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
+
+  return {
+    auth: {
+      token: token ? token : null,
+      user: user ? JSON.parse(user) : null,
+    },
+  };
+};
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     [authApi.reducerPath]: authApi.reducer,
-<<<<<<< HEAD
-<<<<<<< HEAD:src/store/auth/AuthConfig.ts
     [studentApi.reducerPath]: studentApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware).concat(studentApi.middleware),
-=======
-=======
->>>>>>> main
     [questionApi.reducerPath]: questionApi.reducer,
+
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware, questionApi.middleware),
+    getDefaultMiddleware().concat(authApi.middleware,studentApi.middleware ,questionApi.middleware),
 
-<<<<<<< HEAD
->>>>>>> a3ed556 (makes questions crud and getall func working):src/store/DefaultStore.ts
-=======
->>>>>>> main
   preloadedState: loadStateFromLocalStorage(), // Load data from localStorage into Redux store on initialization
 });
 
