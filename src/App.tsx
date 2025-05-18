@@ -9,8 +9,12 @@ import ResetPassword from "./modules/AdminModules/Authentication/ResetPass/Reset
 import ForgetPassword from "./modules/AdminModules/Authentication/ForgetPassword/ForgetPassword";
 import NotFound from "./modules/SharedModules/NotFound/NotFound";
 import Login from "./modules/AdminModules/Authentication/Login/Login";
+<<<<<<< HEAD
 import StudentsList from "./modules/AdminModules/Students/StudentsList/StudentsList";
 
+=======
+import Group_crud from "./group_crud/Group_crud";
+>>>>>>> ee973e7 (group crud ended)
 
 function App() {
   const router = createBrowserRouter([
@@ -28,7 +32,11 @@ function App() {
         { path: "forget-password", element: <ForgetPassword /> },
       ],
     },
+<<<<<<< HEAD
     {path:"student", element:<StudentsList/>}
+=======
+    { path: "group-crud", element: <Group_crud /> },
+>>>>>>> ee973e7 (group crud ended)
   ]);
 
   return (

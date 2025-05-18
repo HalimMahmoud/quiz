@@ -26,7 +26,7 @@ const ResetPassword: React.FC = () => {
       const res = await resetPassword(formData).unwrap();
       toast.success("Password reset successfully!");
       setTimeout(() => {
-        nvigate("/dashboard");
+        nvigate("/login");
       });
       console.log(res);
     } catch (err: any) {
