@@ -2,8 +2,9 @@ import { useSelector } from "react-redux";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 import logo from "../../../assets/Logo.png";
 import auth_pic from "../../../assets/auth-pic.png";
+import type { RootState } from "@/store/auth/AuthLoaded";
 export default function AuthLayout() {
-  const token = useSelector((state) => state.auth.token);
+  const token = useSelector((state: RootState) => state.auth.token);
   const location = useLocation();
 
   if (token) {
@@ -27,7 +28,7 @@ export default function AuthLayout() {
           <div className="text-white mb-10">
             <img src={logo} alt="logo" />
           </div>
-          <h3 className="text-[#C5D86D] text-3xl">{headline[pageKey]}</h3>
+          <h1 className="text-[#C5D86D] text-[25px]">{headline[pageKey]}</h1>
           <Outlet />
         </div>
 
