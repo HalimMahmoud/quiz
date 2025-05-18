@@ -1,24 +1,38 @@
-export const baseURL = 'https://upskilling-egypt.com:3005/';
+export const baseURL = "https://upskilling-egypt.com:3005/api/";
+
+export const QUESTIONS_URLS = {
+  GET_ALL_QUESTIONS: `question`,
+  CREATE: `question`,
+  UPDATE: (id: string) => `question/${id}`,
+  DELETE: (id: string) => `question/${id}`,
+};
 
 export const USER_URLS = {
-  LOGIN: `api/auth/login`,
-  REGISTER: `api/auth/register`,
-  FORGET_PASS: `http://upskilling-egypt.com:3005/api/auth/forgot-password`,
-  RESET_PASS: `api/auth/reset-password`,
-  CHANGE_PASS: `api/auth/change-password`,
+    LOGIN: `auth/login`,
+    REGISTER: `auth/register`,
+    FORGET_PASS: `auth/forgot-password`,
+    RESET_PASS: `auth/reset-password`,
+    CHANGE_PASS: `auth/change-password`,
+};
+
+export const GROUP_CRUD = {
+    CREATE: `group`,
+    GET: `group`,
+    UPDATE: (id: string | number) => `group/${id}`,
+    DELETE: (id: string | number) => `group/${id}`,
 };
 
 export const STUDENT_URLS = {
-  GET_STUDENTS: `/api/student`,
-  GET_STUDENT_WITHOUT_GROUP: `/api/student/without-group`,
-  GET_STUDENT_BY_ID: (id: string) => `/api/student/${id}`,
-  ADD_STUDENT: `api/student`,
+  GET_STUDENTS: `/student`,
+  GET_STUDENT_WITHOUT_GROUP: `/student/without-group`,
+  GET_STUDENT_BY_ID: (id: string) => `/student/${id}`,
+  ADD_STUDENT: `student`,
   ADD_STUDENT_TO_GROUP: (idGroup: string, studentId: string) =>
-    `/api/student/${idGroup}/${studentId}`,
-  UPDATE_STUDENT: `api/student`,
+    `student/${idGroup}/${studentId}`,
+  UPDATE_STUDENT: `student`,
   UPDATE_STUDENT_TO_GROUP: (idGroup: string, studentId: string) =>
-    `/api/student/${idGroup}/${studentId}`,
-  DELETE_STUDENT: (id: string) => `api/student/${id}`,
+    `student/${idGroup}/${studentId}`,
+  DELETE_STUDENT: (id: string) => `student/${id}`,
   DELETE_STUDENT_FROM_GROUP: (idGroup: string, studentId: string) =>
-    `/api/student/${idGroup}/${studentId}`,
+    `student/${idGroup}/${studentId}`,
 };
