@@ -9,6 +9,7 @@ import ResetPassword from "./modules/AdminModules/Authentication/ResetPass/Reset
 import ForgetPassword from "./modules/AdminModules/Authentication/ForgetPassword/ForgetPassword";
 import NotFound from "./modules/SharedModules/NotFound/NotFound";
 import Login from "./modules/AdminModules/Authentication/Login/Login";
+import Group_crud from "./group_crud/Group_crud";
 import MasterLayout from "./modules/SharedModules/MasterLayout/MasterLayout";
 import Questions from "./modules/AdminModules/Questions/Questions";
 import ProtectedRoute from "./modules/SharedModules/ProtectedRoute/ProtectedRoute";
@@ -50,6 +51,7 @@ function App() {
         { path: "forget-password", element: <ForgetPassword /> },
       ],
     },
+    { path: "group-crud", element: <Group_crud /> },
     {
       path: "/dashboard",
       element: (
