@@ -38,7 +38,7 @@ const Group_crud = () => {
 
   // Validation function
   const validate = (
-    data: { name: string; max_students: number },
+    data:{ name: string; max_students: number },
     isUpdate = false
   ) => {
     const newErrors = { name: "", max_students: "" };

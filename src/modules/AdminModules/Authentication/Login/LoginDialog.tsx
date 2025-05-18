@@ -8,7 +8,6 @@ export default function LoginDialog() {
   const isloginPage = useMemo(() => pathname === "/login", [pathname]);
   return (
     <div>
-
       <div className="flex items-center gap-5 mt-5">
         <Card
           className={`px-10 bg-[#333] ${
