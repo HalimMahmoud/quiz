@@ -22,6 +22,7 @@ const ChangePassword = () => {
     defaultValues: {
       password: "",
       password_new: "",
+      confirm_password: "",
     },
   });
 
@@ -29,9 +30,9 @@ const ChangePassword = () => {
     formState: { isSubmitting },
   } = form;
 
-  const onSubmit: SubmitHandler<ChangePasswordFormData> = async (values) => {
+  const onSubmit: SubmitHandler<ChangePasswordFormData> = async ({ password, password_new }) => {
     try {
-      const response = await changePassword(values).unwrap();
+      const response = await changePassword({ password, password_new }).unwrap();
       console.log("Password changed successfully", response);
       toast.success("Password changed successfully");
     } catch (error) {
@@ -58,6 +59,15 @@ const ChangePassword = () => {
         <PasswordInput
           label="New Password"
           name="password_new"
+          control={form.control}
+          showPassword={showNew}
+          setShowPassword={setShowNew}
+        />
+
+         {/* Confirm Password */}
+         <PasswordInput
+          label="Confirm Password"
+          name="confirm_password"
           control={form.control}
           showPassword={showNew}
           setShowPassword={setShowNew}

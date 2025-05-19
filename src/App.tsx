@@ -9,6 +9,8 @@ import ResetPassword from "./modules/AdminModules/Authentication/ResetPass/Reset
 import ForgetPassword from "./modules/AdminModules/Authentication/ForgetPassword/ForgetPassword";
 import NotFound from "./modules/SharedModules/NotFound/NotFound";
 import Login from "./modules/AdminModules/Authentication/Login/Login";
+import StudentsList from "./modules/AdminModules/Students/StudentsList/StudentsList";
+
 import Group_crud from "./group_crud/Group_crud";
 import MasterLayout from "./modules/SharedModules/MasterLayout/MasterLayout";
 import Questions from "./modules/AdminModules/Questions/Questions";
@@ -45,6 +47,7 @@ function App() {
 
       children: [
         { index: true, element: <Login /> },
+
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
         { path: "change-password", element: <ChangePassword /> },
@@ -53,7 +56,7 @@ function App() {
         { path: "forget-password", element: <ForgetPassword /> },
       ],
     },
-    { path: "group-crud", element: <Group_crud /> },
+   
     {
       path: "/dashboard",
       element: (
@@ -65,9 +68,10 @@ function App() {
 
       children: [
         { path: "questions", element: <Questions /> },
-        { path: "results", element: <Results /> },
+          {path:"student", element:<StudentsList/>},
+    { path: "group-crud", element: <Group_crud /> },
+ { path: "results", element: <Results /> },
         { path: "results/:quizId", element: <QuizResultDetails /> }
-
       ],
     },
   ]);

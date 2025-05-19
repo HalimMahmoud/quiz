@@ -1,11 +1,7 @@
 import React from 'react';
 import { AiOutlineEye, AiOutlineEyeInvisible } from 'react-icons/ai';
 import {
-  FormField,
-  FormControl,
-  FormItem,
-  FormLabel,
-  FormMessage,
+  FormField, FormControl, FormItem, FormLabel, FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import type { Control, FieldPath, FieldValues } from 'react-hook-form';
@@ -29,13 +25,13 @@ const PasswordInput = <T extends FieldValues>({
     <FormField
       control={control}
       name={name}
-      render={({ field}) => (
+      render={({ field }) => (
         <FormItem>
-          <FormLabel>{label}</FormLabel>
+          <FormLabel className='text-white'>{label}</FormLabel>
           <div className="relative">
-              <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white">
-                                  <IoKey size={16} />
-                                </div>
+            <div className="absolute left-3 top-1/2 -translate-y-1/2 text-white">
+              <IoKey size={16} />
+            </div>
             <FormControl>
               <Input
                 type={showPassword ? 'text' : 'password'}

@@ -1,20 +1,33 @@
-import { configureStore } from "@reduxjs/toolkit";
-import { loadStateFromLocalStorage } from "./auth/AuthLoaded";
-import { authApi } from "./auth/AuthApi";
-import { questionApi } from "./questions/QuestionApi";
-
+import { configureStore } from '@reduxjs/toolkit';
+import { studentApi } from './auth/StudentApi';
+import { questionApi } from './questions/QuestionApi';
+import { authApi } from './auth/AuthApi';
 import authReducer from "./auth/AuthSlice";
 import { resultApi } from "./auth/ResultApi";
+
+
+const loadStateFromLocalStorage = () => {
+  const token = localStorage.getItem("token");
+  const user = localStorage.getItem("user");
+
+  return {
+    auth: {
+      token: token ? token : null,
+      user: user ? JSON.parse(user) : null,
+    },
+  };
+};
 
 export const store = configureStore({
   reducer: {
     auth: authReducer,
     [authApi.reducerPath]: authApi.reducer,
+    [studentApi.reducerPath]: studentApi.reducer,
     [questionApi.reducerPath]: questionApi.reducer,
-    [resultApi.reducerPath]: resultApi.reducer,
+[resultApi.reducerPath]: resultApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(authApi.middleware, questionApi.middleware, resultApi.middleware ),
+    getDefaultMiddleware().concat(authApi.middleware,studentApi.middleware ,questionApi.middleware, resultApi.middleware),
 
   preloadedState: loadStateFromLocalStorage(), // Load data from localStorage into Redux store on initialization
 });
