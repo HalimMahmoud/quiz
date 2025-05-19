@@ -17,6 +17,8 @@ import { useDispatch } from "react-redux";
 import { useLocalStorage } from "./store/auth/useLocalStorage";
 import { clearUser, setUser } from "./store/auth/AuthSlice";
 import { useEffect } from "react";
+import Results from "./modules/SharedModules/Results/Results";
+import QuizResultDetails from "./modules/AdminModules/QuizResultDetails/QuizResultDetails";
 
 function App() {
   const dispatch = useDispatch();
@@ -61,7 +63,12 @@ function App() {
       ),
       errorElement: <NotFound />,
 
-      children: [{ path: "questions", element: <Questions /> }],
+      children: [
+        { path: "questions", element: <Questions /> },
+        { path: "results", element: <Results /> },
+        { path: "results/:quizId", element: <QuizResultDetails /> }
+
+      ],
     },
   ]);
 

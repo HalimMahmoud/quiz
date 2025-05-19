@@ -16,18 +16,13 @@ export const QUESTIONS_URLS = {
   DELETE: (id: string) => `question/${id}`,
 };
 
-export const USER_URLS = {
-    LOGIN: `api/auth/login`,
-    REGISTER: `api/auth/register`,
-    FORGET_PASS: `api/auth/forgot-password`,
-    RESET_PASS: `api/auth/reset-password`,
-    CHANGE_PASS: `api/auth/change-password`,
-};
-
 export const GROUP_CRUD = {
     CREATE: `api/group`,
     GET: `api/group`,
     UPDATE: (id: string | number) => `api/group/${id}`,
     DELETE: (id: string | number) => `api/group/${id}`,
-};
-
+  };
+  export const RESULT_ULR={
+    GET_All:"quiz/result",
+    GET_GROUP_BY_ID: (id: string | number) => `group/${id}`,
+  };
