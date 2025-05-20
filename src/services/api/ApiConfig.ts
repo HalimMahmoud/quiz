@@ -7,6 +7,7 @@ export const QUESTIONS_URLS = {
   DELETE: (id: string) => `question/${id}`,
 };
 
+
 export const USER_URLS = {
     LOGIN: `auth/login`,
     REGISTER: `auth/register`,
@@ -36,3 +37,7 @@ export const STUDENT_URLS = {
   DELETE_STUDENT_FROM_GROUP: (idGroup: string, studentId: string) =>
     `student/${idGroup}/${studentId}`,
 };
+  export const RESULT_ULR={
+    GET_All:"quiz/result",
+    GET_GROUP_BY_ID: (id: string | number) => `group/${id}`,
+  };
