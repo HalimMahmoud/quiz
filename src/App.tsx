@@ -21,6 +21,7 @@ import { clearUser, setUser } from "./store/auth/AuthSlice";
 import { useEffect } from "react";
 import Results from "./modules/SharedModules/Results/Results";
 import QuizResultDetails from "./modules/AdminModules/QuizResultDetails/QuizResultDetails";
+import Dashboard from "./modules/SharedModules/Dashboard/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -44,10 +45,8 @@ function App() {
       path: "/",
       element: <AuthLayout />,
       errorElement: <NotFound />,
-
       children: [
         { index: true, element: <Login /> },
-
         { path: "login", element: <Login /> },
         { path: "register", element: <Register /> },
         { path: "change-password", element: <ChangePassword /> },
@@ -59,18 +58,14 @@ function App() {
    
     {
       path: "/dashboard",
-      element: (
-        <ProtectedRoute>
-          <MasterLayout />
-        </ProtectedRoute>
-      ),
+      element: <ProtectedRoute><MasterLayout /></ProtectedRoute>,
       errorElement: <NotFound />,
-
       children: [
+        {index:true,element:<Dashboard/>},
         { path: "questions", element: <Questions /> },
-          {path:"student", element:<StudentsList/>},
-    { path: "group-crud", element: <Group_crud /> },
- { path: "results", element: <Results /> },
+        {path:"student", element:<StudentsList/>},
+        { path: "group-crud", element: <Group_crud /> },
+        { path: "results", element: <Results /> },
         { path: "results/:quizId", element: <QuizResultDetails /> }
       ],
     },
