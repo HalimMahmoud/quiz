@@ -56,3 +56,11 @@ export const STUDENT_QUIZ = {
   GET_RESULTS: "quiz/result",
   JOIN: "quiz/join",
 };
+
+export const QUIZES_URLS = {
+  INCOMING_QUIZES: "/quiz/incomming",
+  COMPLETED_QUIZES: "/quiz/completed",
+  CREATE_QUIZ: "/quiz",
+  UPDATE_QUIZ: (id: string) => `/quiz/${id}`,
+  delete_QUIZ: (id: string) => `/quiz/${id}`,
+}
