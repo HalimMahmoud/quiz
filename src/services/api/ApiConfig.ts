@@ -49,3 +49,10 @@ export const STUDENTSQUIZZES_URL = {
   lastFiveCompleted: `quiz/completed`,
   result: `quiz/result`,
 };
+
+export const STUDENT_QUIZ = {
+  INCOMING: "quiz/incomming",
+  COMPLETED: "quiz/completed",
+  GET_RESULTS: "quiz/result",
+  JOIN: "quiz/join",
+};

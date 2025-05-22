@@ -23,6 +23,7 @@ import Results from "./modules/SharedModules/Results/Results";
 import QuizResultDetails from "./modules/AdminModules/QuizResultDetails/QuizResultDetails";
 import StudentLayout from "./modules/SharedModules/StudentLayout/StudentLayout";
 import StudentsResults from "./modules/StudentModules/StudentResults/StudentsResults";
+import StudentQuiz from "./modules/StudentQuiz/StudentQuiz";
 
 function App() {
   const dispatch = useDispatch();
@@ -74,6 +75,7 @@ function App() {
         { path: "group-crud", element: <Group_crud /> },
         { path: "results", element: <Results /> },
         { path: "results/:quizId", element: <QuizResultDetails /> },
+        { path: "student-quiz", element: <StudentQuiz /> },
       ],
     },
     {
