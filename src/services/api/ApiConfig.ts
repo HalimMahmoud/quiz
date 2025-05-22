@@ -7,20 +7,19 @@ export const QUESTIONS_URLS = {
   DELETE: (id: string) => `question/${id}`,
 };
 
-
 export const USER_URLS = {
-    LOGIN: `auth/login`,
-    REGISTER: `auth/register`,
-    FORGET_PASS: `auth/forgot-password`,
-    RESET_PASS: `auth/reset-password`,
-    CHANGE_PASS: `auth/change-password`,
+  LOGIN: `auth/login`,
+  REGISTER: `auth/register`,
+  FORGET_PASS: `auth/forgot-password`,
+  RESET_PASS: `auth/reset-password`,
+  CHANGE_PASS: `auth/change-password`,
 };
 
 export const GROUP_CRUD = {
-    CREATE: `group`,
-    GET: `group`,
-    UPDATE: (id: string | number) => `group/${id}`,
-    DELETE: (id: string | number) => `group/${id}`,
+  CREATE: `group`,
+  GET: `group`,
+  UPDATE: (id: string | number) => `group/${id}`,
+  DELETE: (id: string | number) => `group/${id}`,
 };
 
 export const STUDENT_URLS = {
@@ -37,7 +36,16 @@ export const STUDENT_URLS = {
   DELETE_STUDENT_FROM_GROUP: (idGroup: string, studentId: string) =>
     `student/${idGroup}/${studentId}`,
 };
-  export const RESULT_ULR={
-    GET_All:"quiz/result",
-    GET_GROUP_BY_ID: (id: string | number) => `group/${id}`,
-  };
+export const RESULT_ULR = {
+  GET_All: "quiz/result",
+  GET_GROUP_BY_ID: (id: string | number) => `group/${id}`,
+};
+
+export const STUDENTSQUIZZES_URL = {
+  joinQuiz: "quiz/join",
+  qutionWithoutAnswer: (id: string) => `quiz/without-answers/${id}`,
+  submitQuiz: (id: string) => `quiz/submit/${id}`,
+  firstFiveIncomming: `quiz/incomming`,
+  lastFiveCompleted: `quiz/completed`,
+  result: `quiz/result`,
+};
