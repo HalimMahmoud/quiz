@@ -1,12 +1,49 @@
 import {
   useGetLastFiveCompletedQuizzesQuery,
-  useGetQuizResultsQuery,
+  // useGetQuizResultsQuery,
 } from "@/store/studentsquizzes/StudentQuizzesApi";
 import { useState } from "react";
 
 export default function StudentsResults() {
   const { data: completedQuizzes = [] } = useGetLastFiveCompletedQuizzesQuery();
-  const { data: results = [] } = useGetQuizResultsQuery();
+  // const
+  // {
+  //   data:
+
+  const results = [
+    {
+      quiz: "677c706233ff465235fffe24",
+      score: "100%",
+      submittedAt: "2025-05-22T05:55:00.000Z",
+      student: { _id: "id1", name: "Halim Mahmoud" },
+    },
+    {
+      quiz: "677c738533ff465235ffff61",
+      score: "80%",
+      submittedAt: "2025-05-22T05:55:00.000Z",
+      student: { _id: "id1", name: "Halim Mahmoud" },
+    },
+
+    {
+      quiz: "677cbc4833ff465235004eb6",
+      score: "50%",
+      submittedAt: "2025-05-22T05:55:00.000Z",
+      student: { _id: "id1", name: "Halim Mahmoud" },
+    },
+    {
+      quiz: "678d1a2b33ff46523501ca7f",
+      score: "100%",
+      submittedAt: "2025-05-22T05:55:00.000Z",
+      student: { _id: "id1", name: "Halim Mahmoud" },
+    },
+    {
+      quiz: "677cc25b33ff4652350050aa",
+      score: "90%",
+      submittedAt: "2025-05-22T05:55:00.000Z",
+      student: { _id: "id1", name: "Halim Mahmoud" },
+    },
+  ];
+  // } = useGetQuizResultsQuery();
 
   const [selectedQuizId, setSelectedQuizId] = useState<string | null>(null);
 
