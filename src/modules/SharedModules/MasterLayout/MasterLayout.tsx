@@ -1,10 +1,18 @@
+
 import { useState } from "react";
-import { Outlet } from "react-router-dom";
+import type { RootState } from "@/store/DefaultStore";
+import { useSelector } from "react-redux";
+import { Navigate, Outlet } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 
 export default function MasterLayout() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const token = useSelector((state: RootState) => state.auth.token);
+  const user = useSelector((state: RootState) => state.auth.user);
+  if (token && user?.role !== "Instructor") {
+    return <Navigate to="/student" />;
+  }
+    const [sidebarOpen, setSidebarOpen] = useState(true);
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);

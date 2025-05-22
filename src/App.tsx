@@ -21,7 +21,11 @@ import { clearUser, setUser } from "./store/auth/AuthSlice";
 import { useEffect } from "react";
 import Results from "./modules/SharedModules/Results/Results";
 import QuizResultDetails from "./modules/AdminModules/QuizResultDetails/QuizResultDetails";
-import Dashboard from "./modules/SharedModules/Dashboard/Dashboard";
+
+import StudentLayout from "./modules/SharedModules/StudentLayout/StudentLayout";
+import StudentsResults from "./modules/StudentModules/StudentResults/StudentsResults";
+import StudentQuiz from "./modules/StudentQuiz/StudentQuiz";
+import Dashboard from "./modules/Dashboard/Dashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,7 +59,7 @@ function App() {
         { path: "forget-password", element: <ForgetPassword /> },
       ],
     },
-   
+
     {
       path: "/dashboard",
       element: <ProtectedRoute><MasterLayout /></ProtectedRoute>,
@@ -63,11 +67,23 @@ function App() {
       children: [
         {index:true,element:<Dashboard/>},
         { path: "questions", element: <Questions /> },
-        {path:"student", element:<StudentsList/>},
+        { path: "student", element: <StudentsList /> },
         { path: "group-crud", element: <Group_crud /> },
         { path: "results", element: <Results /> },
-        { path: "results/:quizId", element: <QuizResultDetails /> }
+        { path: "results/:quizId", element: <QuizResultDetails /> },
+        { path: "student-quiz", element: <StudentQuiz /> },
+        { path: "dashboard", element: <Dashboard /> },
       ],
+    },
+    {
+      path: "/student",
+      element: (
+        <ProtectedRoute>
+          <StudentLayout />
+        </ProtectedRoute>
+      ),
+      errorElement: <NotFound />,
+      children: [{ path: "student-results", element: <StudentsResults /> }],
     },
   ]);
 

@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-type UserRole = "Instructor" | "Admin" | "Student";
+type UserRole = "Instructor" | "Student";
 type UserStatus = "active" | "inactive";
 
 export type Profile = {
