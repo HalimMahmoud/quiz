@@ -1,4 +1,5 @@
 import {
+  LogOut,
   Home,
   Users,
   Layers,
@@ -8,7 +9,7 @@ import {
   HelpCircle,
   type LucideProps,
 } from "lucide-react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import type { RootState } from "@/store/DefaultStore";
@@ -74,6 +75,12 @@ const menuItemsInstructor = [
 
 const menuItemsStudent = [
   {
+    id: "dashboard",
+    label: "Dashboard",
+    icon: Home,
+    path: "/dashboard",
+  },
+  {
     id: "quizzes",
     label: "Quizzes",
     icon: ClipboardList,
@@ -94,7 +101,7 @@ const menuItemsStudent = [
 ];
 export default function Sidebar({ className }: SidebarProps) {
   const user = useSelector((state: RootState) => state.auth.user);
-
+  const navigate = useNavigate();
   const [menuItems, setMenuItems] = useState<menuItemsProp[]>();
 
   useEffect(() => {
@@ -136,6 +143,18 @@ export default function Sidebar({ className }: SidebarProps) {
               </li>
             );
           })}
+
+          <li
+            className="w-full flex items-center gap-3 px-6 py-5 text-left transition-colors border-b cursor-pointer"
+            onClick={() => {
+              localStorage.removeItem("token");
+              localStorage.removeItem("user");
+              window.location.reload();
+            }}
+          >
+            <LogOut size={35} className="bg-[#FFEDDF] text-black rounded-md" />
+            <span className="text-sm">Logout</span>
+          </li>
         </ul>
       </nav>
     </aside>

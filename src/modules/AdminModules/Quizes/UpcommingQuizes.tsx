@@ -22,7 +22,6 @@ export default function UpcommingQuizes() {
   const displayedQuizzes =
     location.pathname === "/dashboard/quizes" ? data?.slice(0, 2) : data;
 
-  console.log(data);
   return (
     <div className="border border-gray-300 rounded-md overflow-x-auto overscroll-contain mx-8 my-4 px-4">
       <h1 className="text-2xl font-bold py-4">Upcoming Quizzes</h1>

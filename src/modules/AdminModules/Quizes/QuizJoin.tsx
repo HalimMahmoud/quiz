@@ -26,6 +26,9 @@ import { z } from "zod";
 import type { SubmitHandler } from "react-hook-form";
 import type { ErrorResponse } from "@/interfaces/errors.interfaces";
 import { useJoinQuizMutation } from "@/store/studentsquizzes/StudentQuizzesApi";
+import { useNavigate } from "react-router-dom";
+import type { RootState } from "@/store/DefaultStore";
+import { useSelector } from "react-redux";
 
 const QuizSchema = z.object({
   code: z.string().min(1, "Code is required"),
@@ -40,6 +43,7 @@ export function QuizJoin({
   isCreateDialogOpen: boolean;
   setIsCreateDialogOpen: (open: boolean) => void;
 }) {
+  const navigate = useNavigate();
   const [joinQuiz] = useJoinQuizMutation();
   const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false);
   const [quizCode, setQuizCode] = useState("");
@@ -54,10 +58,14 @@ export function QuizJoin({
   const onSubmit: SubmitHandler<QuizFormData> = async (values) => {
     try {
       const response = await joinQuiz(values).unwrap();
+      console.log(response);
+      navigate(`dashboard/test/${response.data.quiz}`);
+
       setIsCreateDialogOpen(false);
       setQuizCode(response?.data?.code || "");
       setIsSuccessDialogOpen(true);
       toast.success(response?.data?.message || "Quiz joined successfully");
+
       form.reset();
     } catch (error) {
       toast.error(
