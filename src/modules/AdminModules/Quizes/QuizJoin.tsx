@@ -59,7 +59,8 @@ export function QuizJoin({
     try {
       const response = await joinQuiz(values).unwrap();
       console.log(response);
-      navigate(`dashboard/test/${response.data.quiz}`);
+      console.log(`/dashboard/test/${response.data.quiz}`);
+      navigate(`/dashboard/test/${response.data.quiz}`);
 
       setIsCreateDialogOpen(false);
       setQuizCode(response?.data?.code || "");

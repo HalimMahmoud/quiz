@@ -8,7 +8,6 @@ import {
   ClipboardList,
   HelpCircle,
   type LucideProps,
-  LogOut,
 } from "lucide-react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
@@ -111,8 +110,7 @@ export default function Sidebar({ className }: SidebarProps) {
   useEffect(() => {
     if (user?.role === "Instructor") {
       setMenuItems(menuItemsInstructor);
-    }
-    else setMenuItems(menuItemsStudent);
+    } else setMenuItems(menuItemsStudent);
   }, []);
   const pathname = useLocation().pathname;
   return (
@@ -158,7 +156,6 @@ export default function Sidebar({ className }: SidebarProps) {
             <LogOut size={35} className="bg-[#FFEDDF] text-black rounded-md" />
             <span className="text-sm">Logout</span>
           </li>
-
         </ul>
       </nav>
     </aside>
