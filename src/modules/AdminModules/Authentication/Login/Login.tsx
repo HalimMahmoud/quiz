@@ -42,24 +42,14 @@ export default function Login() {
   const onSubmit: SubmitHandler<LoginFormData> = async (values) => {
     try {
       const response = await login(values).unwrap();
-      localStorage.setItem('token', response?.data?.accessToken)
       toast.success(response?.data?.message || "Logged in successfully")
       const payload = { user: response?.data?.profile, token: response?.data?.accessToken }
-      dispatch(setUser(payload))
-      if (response?.data?.profile?.role == "Instructor") navigate('/dashboard')
-      if (response?.data?.profile?.role == "learner") navigate('/home')
-
-      // localStorage.setItem("token", response?.data?.accessToken);
-      toast.success(response?.data?.message || "Logged in successfully");
-     
-      // dispatch(setUser(payload));
       localStorage.setItem("token", payload.token);
       localStorage.setItem("user", JSON.stringify(payload.user));
-
       dispatch(setUser({ user: payload.user, token: payload.token }));
 
       if (response?.data?.profile?.role == "Instructor") navigate("/dashboard");
-      if (response?.data?.profile?.role == "learner") navigate("/home");
+      if (response?.data?.profile?.role == "Student") navigate("/dashboard/student-quiz");
     } catch (error) {
       toast.error(
         (error as ErrorResponse)?.data?.message || "Error logging in"

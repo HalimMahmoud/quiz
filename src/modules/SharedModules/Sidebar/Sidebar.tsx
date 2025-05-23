@@ -7,12 +7,15 @@ import {
   ClipboardList,
   HelpCircle,
   type LucideProps,
+  LogOut,
 } from "lucide-react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import type { RootState } from "@/store/DefaultStore";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "@/store/auth/AuthSlice";
+import { Button } from "@/components/ui/button";
 
 interface SidebarProps {
   className?: string;
@@ -64,12 +67,12 @@ const menuItemsInstructor = [
     icon: BarChart3,
     path: "/dashboard/results",
   },
-  {
-    id: "help",
-    label: "Help",
-    icon: HelpCircle,
-    path: "/dashboard/help",
-  },
+  // {
+  //   id: "help",
+  //   label: "Help",
+  //   icon: HelpCircle,
+  //   path: "/dashboard/help",
+  // },
 ];
 
 const menuItemsStudent = [
@@ -77,7 +80,7 @@ const menuItemsStudent = [
     id: "quizzes",
     label: "Quizzes",
     icon: ClipboardList,
-    path: "/dashboard/quizes",
+    path: "/dashboard/student-quiz",
   },
   {
     id: "results",
@@ -94,6 +97,15 @@ const menuItemsStudent = [
 ];
 export default function Sidebar({ className }: SidebarProps) {
   const user = useSelector((state: RootState) => state.auth.user);
+  const navigate=useNavigate();
+  const dispatch=useDispatch();
+  const logout=() => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+     const payload = { user:null  , token:null  }
+          dispatch(setUser(payload))
+    navigate("/login")
+  }
 
   const [menuItems, setMenuItems] = useState<menuItemsProp[]>();
 
@@ -101,7 +113,7 @@ export default function Sidebar({ className }: SidebarProps) {
     if (user?.role === "Instructor") {
       setMenuItems(menuItemsInstructor);
     }
-    setMenuItems(menuItemsStudent);
+    else setMenuItems(menuItemsStudent);
   }, []);
   const pathname = useLocation().pathname;
   return (
@@ -136,6 +148,20 @@ export default function Sidebar({ className }: SidebarProps) {
               </li>
             );
           })}
+          <li>
+                <span
+                  onClick={logout}
+                  className="w-full cursor-pointer flex items-center gap-3 px-6 py-5 text-left transition-colors border-b"
+                >
+                  <LogOut
+                    size={35}
+                    className={`${
+                        "bg-[#FFEDDF] text-black"
+                    } rounded-md `}
+                  />
+                  <span className="text-sm">Logout</span>
+                </span>
+              </li>
         </ul>
       </nav>
     </aside>
