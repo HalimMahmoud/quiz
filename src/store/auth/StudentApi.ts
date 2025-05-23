@@ -20,6 +20,12 @@ export const studentApi = createApi({
         method: 'GET',
       }),
     }),
+    getTopFiveStudents: builder.query({
+      query: () => ({
+        url: STUDENT_URLS.TOP_FIVE,
+        method: 'GET',
+      }),
+    }),
     getStudentById: builder.query({
       query: (id: string) => ({
         url: STUDENT_URLS.GET_STUDENT_BY_ID(id),
@@ -68,6 +74,7 @@ export const studentApi = createApi({
 });
 
 export const {
+  useGetTopFiveStudentsQuery,
   useGetStudentsQuery,
   useGetStudentWithoutGroupQuery,
   useGetStudentByIdQuery,

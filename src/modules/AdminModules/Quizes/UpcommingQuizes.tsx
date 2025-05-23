@@ -1,6 +1,7 @@
 import UpcommingCard from "@/modules/SharedModules/UpcommingCard/UpcommingCard";
 import { useGetIncomingQuizzesQuery } from "@/store/quizes/QuizesApi";
-import { useLocation } from "react-router-dom";
+import { FaLongArrowAltRight } from "react-icons/fa";
+import { Link, useLocation } from "react-router-dom";
 
 export default function UpcommingQuizes() {
   const { data } = useGetIncomingQuizzesQuery();
@@ -24,8 +25,13 @@ export default function UpcommingQuizes() {
 
   return (
     <div className="border border-gray-300 rounded-md overflow-x-auto overscroll-contain mx-8 my-4 px-4">
+      <div className="flex justify-between items-center">
       <h1 className="text-2xl font-bold py-4">Upcoming Quizzes</h1>
-
+      <div className="flex ">
+            <Link to={'/dashboard/quizes'} className="cursor-pointer">Quizes</Link >
+            <span className="flex items-center"><FaLongArrowAltRight className='mx-2 text-[#C5D86D]'/> </span>
+      </div>
+</div>
       {displayedQuizzes?.map((quiz) => (
         <UpcommingCard
           title={quiz?.title}
