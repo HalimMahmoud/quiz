@@ -103,6 +103,17 @@ export const QuizSchema = z.object({
 
 
 });
+export const QuizUpdateSchema = z.object({
+  title: z
+    .string()
+    .min(1, { message: 'title is required.' }),
+
+    description: z
+    .string()
+    .min(1, { message: 'description is required.' }),
+
+   });
+export type QuizUpdateFormData = z.infer<typeof QuizUpdateSchema>;
 export type QuizFormData = z.infer<typeof QuizSchema>;
 export type RegisterFormData = z.infer<typeof registerSchema>;
 export type LoginFormData = z.infer<typeof loginSchema>;

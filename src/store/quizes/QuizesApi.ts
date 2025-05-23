@@ -23,7 +23,12 @@ export const quizApi = createApi({
       }),
       providesTags: ['Quiz'], // Optional: for caching
     }),
-
+    getQuizByID: builder.query<Quiz, string>({  
+      query: (id) => ({
+        url: QUIZES_URLS.GET_QUIZ(id),
+        method: 'GET',
+      }),
+    }),
     createQuiz: builder.mutation<Quiz, Partial<Quiz>>({
       query: (body) => ({
         url: QUIZES_URLS.CREATE_QUIZ,
@@ -55,6 +60,7 @@ export const quizApi = createApi({
 export const {
   useGetIncomingQuizzesQuery,
   useGetCompletedQuizzesQuery,
+  useGetQuizByIDQuery,
   useCreateQuizMutation,
   useUpdateQuizMutation,
   useDeleteQuizMutation,

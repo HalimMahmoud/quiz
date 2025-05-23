@@ -62,5 +62,6 @@ export const QUIZES_URLS = {
   COMPLETED_QUIZES: "/quiz/completed",
   CREATE_QUIZ: "/quiz",
   UPDATE_QUIZ: (id: string) => `/quiz/${id}`,
+  GET_QUIZ: (id: string) => `/quiz/${id}`,
   delete_QUIZ: (id: string) => `/quiz/${id}`,
 }

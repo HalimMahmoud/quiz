@@ -22,7 +22,6 @@ export default function Results() {
     const [modifiedResults, setModifiedResults] = useState<Result[]>([]);
     const [loadingGroups, setLoadingGroups] = useState<boolean>(true);
     const {pathname}=useLocation();
-    // /dashboard/quizes
         useEffect(() => {
         const fetchGroupData = async () => {
             if (resultsData && resultsData.length > 0) {

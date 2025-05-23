@@ -35,6 +35,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { useState, useEffect } from "react";
 import { privateAxiosInstance } from "@/services/api/ApiInstance";
 import CodeDialog from "./CodeDialog";
+import SubmitButton from "@/components/form/SubmitButton";
+import { FaSpinner } from "react-icons/fa";
 
 interface Group {
   _id: string;
@@ -115,7 +117,7 @@ export function DialogDemo() {
       <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
         <DialogTrigger asChild>
           <button
-            className="flex-1  w-[180px] border border-gray-400 p-8 rounded-xl flex flex-col items-center hover:bg-gray-100 transition"
+            className="ol-span-12 md:col-span-6 lg:col-span-4 h-[200px]  w-[180px] border border-gray-400 p-8 rounded-xl flex flex-col items-center hover:bg-gray-100 transition"
             onClick={() => setIsCreateDialogOpen(true)}
           >
             <BsFillStopwatchFill className="text-4xl mb-2" />
@@ -385,9 +387,12 @@ export function DialogDemo() {
                 <Button type="button" variant="outline" onClick={() => form.reset()}>
                   Reset
                 </Button>
-                <Button type="submit" disabled={form.formState.isSubmitting}>
-                  {form.formState.isSubmitting ? "Creating..." : "Create Quiz"}
-                </Button>
+                <SubmitButton
+          isSubmitting={form.formState.isSubmitting}
+          loadingText="creating..."
+          buttonText="create"
+          icon={<FaSpinner size={16} />}
+        />
               </div>
             </form>
           </Form>
