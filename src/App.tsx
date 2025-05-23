@@ -22,7 +22,6 @@ import { useEffect } from "react";
 import Results from "./modules/SharedModules/Results/Results";
 import QuizResultDetails from "./modules/AdminModules/QuizResultDetails/QuizResultDetails";
 
-import StudentLayout from "./modules/SharedModules/StudentLayout/StudentLayout";
 import StudentsResults from "./modules/StudentModules/StudentResults/StudentsResults";
 import StudentQuiz from "./modules/StudentQuiz/StudentQuiz";
 import Dashboard from "./modules/Dashboard/Dashboard";
@@ -64,10 +63,14 @@ function App() {
 
     {
       path: "/dashboard",
-      element: <ProtectedRoute><MasterLayout /></ProtectedRoute>,
+      element: (
+        <ProtectedRoute>
+          <MasterLayout />
+        </ProtectedRoute>
+      ),
       errorElement: <NotFound />,
       children: [
-        {index:true,element:<Dashboard/>},
+        { index: true, element: <Dashboard /> },
         { path: "questions", element: <Questions /> },
         { path: "student", element: <StudentsList /> },
         { path: "group-crud", element: <Group_crud /> },
@@ -77,17 +80,8 @@ function App() {
         { path: "dashboard", element: <Dashboard /> },
         { path: "quizes", element: <Quizes /> },
         { path: "quizes/:quizId", element: <QuizeData /> },
+        { path: "student-results", element: <StudentsResults /> },
       ],
-    },
-    {
-      path: "/student",
-      element: (
-        <ProtectedRoute>
-          <StudentLayout />
-        </ProtectedRoute>
-      ),
-      errorElement: <NotFound />,
-      children: [{ path: "student-results", element: <StudentsResults /> }],
     },
   ]);
 

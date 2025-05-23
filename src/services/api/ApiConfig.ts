@@ -56,12 +56,13 @@ export const STUDENT_QUIZ = {
   GET_RESULTS: "quiz/result",
   JOIN: "quiz/join",
 };
-
-export const QUIZES_URLS = {
-  INCOMING_QUIZES: "/quiz/incomming",
-  COMPLETED_QUIZES: "/quiz/completed",
+export const QUIZZES_URLS = {
+  INCOMING_QUIZZES: "/quiz/incoming",
+  COMPLETED_QUIZZES: "/quiz/completed",
   CREATE_QUIZ: "/quiz",
   UPDATE_QUIZ: (id: string) => `/quiz/${id}`,
   GET_QUIZ: (id: string) => `/quiz/${id}`,
-  delete_QUIZ: (id: string) => `/quiz/${id}`,
-}
+  DELETE_QUIZ: (id: string) => `/quiz/${id}`,
+  JOIN: "/quiz/join",
+  GET_RESULTS: "/quiz/result",
+};
