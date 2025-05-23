@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsFillStopwatchFill } from "react-icons/bs";
 import { privateAxiosInstance } from "@/services/api/ApiInstance";
 import { STUDENT_QUIZ } from "../../services/api/ApiConfig";
@@ -19,6 +19,7 @@ interface CompletedQuizItem {
 }
 
 const StudentQuiz = () => {
+  const navigate = useNavigate();
   const [coming, setComing] = useState<QuizItem[]>([]);
   const [completed, setCompleted] = useState<CompletedQuizItem[]>([]);
   const [showModal, setShowModal] = useState(false);
@@ -62,8 +63,11 @@ const StudentQuiz = () => {
       const response = await privateAxiosInstance.post(STUDENT_QUIZ.JOIN, {
         code,
       });
+      navigate(`/dashboard/test/${response.data.quiz}`);
       setJoin(response.data);
     } catch (error) {
+      console.log("join");
+
       console.log(error);
     }
   };
