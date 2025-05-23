@@ -24,6 +24,7 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
   const location = useLocation();
   const currentPath = location.pathname;
   const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+
   // Get title based on current route, fallback to "Dashboard"
   const title = routeTitles[currentPath] || "Dashboard";
 
@@ -47,45 +48,34 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
             </div>
           </div>
           <div className="flex items-center gap-3">
-            <span className="font-semibold text-gray-900 text-lg">{title}</span>
-          </div>
-        </div>
+            {user?.role ==="Instructor" && <div className="border-e pe-2 py-3">
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-2 border-gray-300 rounded-xl"
+                onClick={() => setIsCreateDialogOpen(true)}
+              >
+                
+                <img src={bills} className="w-6 h-full " alt="bills" />
+                New quiz
+              </Button>
+                      <DialogDemo isCreateDialogOpen={isCreateDialogOpen} setIsCreateDialogOpen={setIsCreateDialogOpen}/>
 
-        {/* Right section */}
+            </div>}
 
-        <div className="flex items-center gap-3">
-          <div className="border-e pe-2 py-3">
-            <Button
-              variant="outline"
-              size="sm"
-              className="flex items-center gap-2 border-gray-300 rounded-xl"
-              onClick={() => setIsCreateDialogOpen(true)}
-            >
-              <img src={bills} className="w-6 h-full " alt="bills" />
-              New quiz
-            </Button>
-            {user?.role === "Instructor" && (
-              <DialogDemo
-                isCreateDialogOpen={isCreateDialogOpen}
-                setIsCreateDialogOpen={setIsCreateDialogOpen}
-              />
-            )}
-          </div>
-
-          <div className="flex items-center gap-2">
-            <Avatar className="w-8 h-8">
-              <AvatarImage src="/api/placeholder/32/32" alt="User" />
-              <AvatarFallback className="bg-gray-300 text-gray-700 text-xs">
-                NC
-              </AvatarFallback>
-            </Avatar>
-            <div className="flex flex-col">
-              <span className="text-sm font-medium text-gray-900">
-                {`${user?.first_name} ${user?.last_name}`}
-              </span>
-              <span className="text-xs text-green-600 font-medium">
-                {user?.email} {user?.role}
-              </span>
+            <div className="flex items-center gap-2">
+              <Avatar className="w-8 h-8">
+                <AvatarImage src="/api/placeholder/32/32" alt="User" />
+                <AvatarFallback className="bg-gray-300 text-gray-700 text-xs">NC</AvatarFallback>
+              </Avatar>
+              <div className="flex flex-col">
+                <span className="text-sm font-medium text-gray-900">
+                  {user?.first_name} {user?.last_name}
+                </span>
+                <span className="text-xs text-green-600 font-medium">
+                  {user?.role === "Instructor" ? "Instructor" : "Student"}
+                </span>
+              </div>
             </div>
           </div>
         </div>
