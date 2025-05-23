@@ -19,7 +19,6 @@ import { useCreateQuizMutation } from "@/store/quizes/QuizesApi";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import type { SubmitHandler } from "react-hook-form";
-import { BsFillStopwatchFill } from "react-icons/bs"
 
 import { toast } from "sonner";
 import {
@@ -43,11 +42,10 @@ interface Group {
   name: string;
 }
 
-export function DialogDemo() {
+export function DialogDemo({isCreateDialogOpen, setIsCreateDialogOpen}: {isCreateDialogOpen: boolean, setIsCreateDialogOpen: (open: boolean) => void}) {
   const [createQuiz] = useCreateQuizMutation();
   const [groups, setGroups] = useState<Group[]>([]);
   const [isLoadingGroups, setIsLoadingGroups] = useState(false);
-  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   const [isSuccessDialogOpen, setIsSuccessDialogOpen] = useState(false);
   const [quizCode, setQuizCode] = useState("");
   
@@ -116,13 +114,6 @@ export function DialogDemo() {
       {/* Create Quiz Dialog */}
       <Dialog open={isCreateDialogOpen} onOpenChange={setIsCreateDialogOpen}>
         <DialogTrigger asChild>
-          <button
-            className="ol-span-12 md:col-span-6 lg:col-span-4 h-[200px]  w-[180px] border border-gray-400 p-8 rounded-xl flex flex-col items-center hover:bg-gray-100 transition"
-            onClick={() => setIsCreateDialogOpen(true)}
-          >
-            <BsFillStopwatchFill className="text-4xl mb-2" />
-            <h1 className="text-xl font-bold">Set up a new Quiz</h1>
-          </button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[600px] max-h-[80vh] overflow-y-auto">
           <Form {...form}>

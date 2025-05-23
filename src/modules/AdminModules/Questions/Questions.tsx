@@ -6,7 +6,7 @@ export default function Questions() {
   const { data, isLoading } = useGetAllQuestionsQuery();
 
   return (
-    <div className="flex flex-col h-screen w-screen overflow-hidden">
+    <div className="flex flex-col h-screen  overflow-hidden">
       <div className="border rounded-md flex flex-col p-4 h-full">
         <div className="mb-4 flex items-center justify-between">
           <h1 className="text-2xl font-bold">Bank of Questions</h1>
@@ -34,9 +34,9 @@ export default function Questions() {
         </div>
         <div className=" flex-1 flex-col overflow-hidden">
           {/* scroll container */}
-          <div className="h-full overflow-auto overscroll-contain">
+          <div className="h-full overflow-x-auto overscroll-contain">
             {/* table fills parent */}
-            <table className="min-w-full h-full w-full border border-gray-300 text-left text-sm table-auto">
+            <table className=" border border-gray-300 text-left text-sm table-auto ">
               <thead className="bg-black text-white">
                 <tr>
                   <th className="border border-gray-300 px-6 py-3">Title</th>
