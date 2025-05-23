@@ -1,6 +1,6 @@
 import React from "react";
 import { FiArrowRight } from "react-icons/fi";
-import imageUrl from '../../../assets/Quiz img.png'
+import imageUrl from "../../../assets/Quiz img.png";
 import { Link } from "react-router-dom";
 interface CourseCardProps {
   title: string;
@@ -38,7 +38,7 @@ const UpcommingCard: React.FC<CourseCardProps> = ({
               <span className="font-bold">{enrolledStudents}</span>
             </p>
             <Link
-            to={`/dashboard/quizes/${quizId}`}
+              to={`/dashboard/quizes/${quizId}`}
               className="px-4 py-2 text-black rounded-full hover:bg-gray-100 transition-colors flex items-center gap-2"
             >
               Open
