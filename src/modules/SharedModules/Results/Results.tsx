@@ -12,7 +12,7 @@ import { useGetAllResultsQuery } from "@/store/auth/ResultApi";
 import { useEffect, useState } from "react";
 import Loading from "../Loading/Loading";
 import { IoEyeOutline } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import type { GroupData, Result } from "@/interfaces/results.interface";
 
 
@@ -21,8 +21,8 @@ export default function Results() {
     const { data: resultsData, isLoading: resultsLoading } = useGetAllResultsQuery(undefined) as { data: Result[]; isLoading: boolean };
     const [modifiedResults, setModifiedResults] = useState<Result[]>([]);
     const [loadingGroups, setLoadingGroups] = useState<boolean>(true);
-
-    useEffect(() => {
+    const {pathname}=useLocation();
+        useEffect(() => {
         const fetchGroupData = async () => {
             if (resultsData && resultsData.length > 0) {
                 setLoadingGroups(true);
@@ -53,8 +53,16 @@ export default function Results() {
                         ...result,
                         groupData: groupData[result.quiz.group],
                     }));
-                setModifiedResults(enriched);
-                setLoadingGroups(false);
+                if (pathname === "/dashboard/quizes") {
+                    const slicedResults=enriched.slice(0, 5);
+                    setModifiedResults(slicedResults);
+                    setLoadingGroups(false);
+                }
+                else{
+                    setModifiedResults(enriched);
+                    setLoadingGroups(false);
+
+                }
             }
         };
 
@@ -72,7 +80,7 @@ export default function Results() {
 
     return (
         <>
-            <div className="border border-gray-300 rounded-md overflow-x-auto overscroll-contain mx-8 my-4">
+            <div className="border border-gray-300 rounded-md overflow-x-auto overscroll-contain mx-8 my-4 px-4">
                 <h1 className="text-2xl font-bold py-4">Completed Quizzes</h1>
 
                 <Table className="w-full table-auto">

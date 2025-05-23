@@ -26,6 +26,8 @@ import StudentLayout from "./modules/SharedModules/StudentLayout/StudentLayout";
 import StudentsResults from "./modules/StudentModules/StudentResults/StudentsResults";
 import StudentQuiz from "./modules/StudentQuiz/StudentQuiz";
 import Dashboard from "./modules/Dashboard/Dashboard";
+import Quizes from "./modules/AdminModules/Quizes/Quizes";
+import QuizeData from "./modules/AdminModules/Quizes/QuizeData";
 
 function App() {
   const dispatch = useDispatch();
@@ -73,6 +75,8 @@ function App() {
         { path: "results/:quizId", element: <QuizResultDetails /> },
         { path: "student-quiz", element: <StudentQuiz /> },
         { path: "dashboard", element: <Dashboard /> },
+        { path: "quizes", element: <Quizes /> },
+        { path: "quizes/:quizId", element: <QuizeData /> },
       ],
     },
     {

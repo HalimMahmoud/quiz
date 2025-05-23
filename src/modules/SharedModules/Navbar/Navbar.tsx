@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useLocation } from "react-router-dom";
 import bills from "../../../assets/bills.svg"
+import { useState } from "react";
+import { DialogDemo } from "@/modules/AdminModules/Quizes/QuizDialog";
 interface NavbarProps {
   onMenuClick?: () => void;
 }
@@ -18,7 +20,7 @@ const routeTitles: Record<string, string> = {
 export default function Navbar({ onMenuClick }: NavbarProps) {
   const location = useLocation();
   const currentPath = location.pathname;
-
+const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   // Get title based on current route, fallback to "Dashboard"
   const title = routeTitles[currentPath] || "Dashboard";
 
@@ -55,10 +57,13 @@ export default function Navbar({ onMenuClick }: NavbarProps) {
                 variant="outline"
                 size="sm"
                 className="flex items-center gap-2 border-gray-300 rounded-xl"
+                onClick={() => setIsCreateDialogOpen(true)}
               >
+                
                 <img src={bills} className="w-6 h-full " alt="bills" />
                 New quiz
               </Button>
+                      <DialogDemo isCreateDialogOpen={isCreateDialogOpen} setIsCreateDialogOpen={setIsCreateDialogOpen}/>
 
             </div>
 

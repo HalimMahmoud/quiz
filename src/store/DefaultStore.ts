@@ -5,6 +5,7 @@ import { authApi } from "./auth/AuthApi";
 import authReducer from "./auth/AuthSlice";
 import { resultApi } from "./auth/ResultApi";
 import { studentQuizApi } from "./studentsquizzes/StudentQuizzesApi";
+import { quizApi } from "./quizes/QuizesApi";
 
 const loadStateFromLocalStorage = () => {
   const token = localStorage.getItem("token");
@@ -26,6 +27,8 @@ export const store = configureStore({
     [questionApi.reducerPath]: questionApi.reducer,
     [resultApi.reducerPath]: resultApi.reducer,
     [studentQuizApi.reducerPath]: studentQuizApi.reducer,
+    [quizApi.reducerPath]: quizApi.reducer,
+
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(
@@ -33,7 +36,8 @@ export const store = configureStore({
       studentApi.middleware,
       questionApi.middleware,
       resultApi.middleware,
-      studentQuizApi.middleware
+      studentQuizApi.middleware,
+      quizApi.middleware
     ),
 
   preloadedState: loadStateFromLocalStorage(), // Load data from localStorage into Redux store on initialization

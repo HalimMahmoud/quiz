@@ -3,7 +3,8 @@ import {
   Users, 
   Layers, 
   FileText, 
-  BarChart3, 
+  BarChart3,
+  ClipboardList, 
   HelpCircle 
 } from "lucide-react";
 import { NavLink, useLocation, useNavigation } from "react-router-dom";
@@ -28,10 +29,22 @@ const menuItems = [
     path: "/dashboard/group-crud",
   },
   {
-    id: "quizzes",
-    label: "Quizzes",
+    id: "questions",
+    label: "Questions",
     icon: FileText,
     path: "/dashboard/questions",
+  },
+  {
+    id: "quizzes",
+    label: "Quizzes",
+    icon: ClipboardList,
+    path: "/dashboard/quizes",
+  },
+  {
+    id: "students",
+    label: "Students",
+    icon: Users,
+    path: "/dashboard/student",
   },
   {
     id: "results",
@@ -39,12 +52,12 @@ const menuItems = [
     icon: BarChart3,
     path: "/dashboard/results",
   },
-  {
-    id: "help",
-    label: "Help",
-    icon: HelpCircle,
-    path: "/dashboard/help",
-  },
+  // {
+  //   id: "help",
+  //   label: "Help",
+  //   icon: HelpCircle,
+  //   path: "/dashboard/help",
+  // },
 ];
 
 export default function Sidebar({ 

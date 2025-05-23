@@ -62,6 +62,59 @@ export const registerSchema = z.object({
       message: 'Password must contain at least one lowercase letter and one number.',
     }),
 });
+export const QuizSchema = z.object({
+  title: z
+    .string()
+    .min(1, { message: 'title is required.' }),
+
+    description: z
+    .string()
+    .min(1, { message: 'description is required.' }),
+
+    group: z
+    .string()
+    .min(1, { message: 'group is required.' }),
+
+    questions_number: z
+    .string()
+    .min(1, { message: 'questions_number is required.' }),
+
+    difficulty: z
+    .string()
+    .min(1, { message: 'difficulty is required.' }),
+
+    type: z
+    .string()
+    .min(1, { message: 'type is required.' }),
+
+    schadule: z
+    .string()
+    .min(1, { message: 'schadule is required.' }),
+
+    duration: z
+    .string()
+    .min(1, { message: 'duration is required.' }),
+
+
+
+    score_per_question: z
+    .string()
+    .min(1, { message: 'score_per_question is required.' }),
+
+
+});
+export const QuizUpdateSchema = z.object({
+  title: z
+    .string()
+    .min(1, { message: 'title is required.' }),
+
+    description: z
+    .string()
+    .min(1, { message: 'description is required.' }),
+
+   });
+export type QuizUpdateFormData = z.infer<typeof QuizUpdateSchema>;
+export type QuizFormData = z.infer<typeof QuizSchema>;
 export type RegisterFormData = z.infer<typeof registerSchema>;
 export type LoginFormData = z.infer<typeof loginSchema>;
 export type ChangePasswordFormData = z.infer<typeof changePasswordSchema>;

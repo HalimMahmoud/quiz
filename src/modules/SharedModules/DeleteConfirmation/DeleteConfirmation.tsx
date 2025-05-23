@@ -8,6 +8,10 @@ import {
 import { X, Check } from "lucide-react";
 import { useState, type ReactNode } from "react";
 import { useDeleteQuestionMutation } from "@/store/questions/QuestionApi";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useDeleteQuizMutation } from "@/store/quizes/QuizesApi";
+import { toast } from "sonner";
+import Loading from "../Loading/Loading";
 
 export default function DeleteConfirmation({
   questionId,
@@ -17,10 +21,20 @@ export default function DeleteConfirmation({
   children?: ReactNode;
 }) {
   const [deleteQuestion, { isLoading }] = useDeleteQuestionMutation();
-
+      const [deleteQuiz,{isLoading:isQuizLoading}] = useDeleteQuizMutation();
+      const {pathname} = useLocation();
+      const isQuizPage = pathname.includes('quizes');
+      const navigate = useNavigate();
   const onDelete = async () => {
     try {
-      deleteQuestion(questionId);
+      if (isQuizPage) {
+        await deleteQuiz(questionId);
+      } else {
+        await deleteQuestion(questionId);
+      }
+      setOpen(false);
+      toast.success("item deleted successfully");
+      if (isQuizPage) navigate("/dashboard/quizes");
     } catch (error) {
       console.log(error);
     }
@@ -34,7 +48,7 @@ export default function DeleteConfirmation({
       <DialogContent className="sm:max-w-[500px] p-0 overflow-hidden [&>button]:hidden">
         <div className="border-b relative h-[50px]">
           <DialogTitle className="text-base font-medium p-4 float-left">
-            Delete Question
+            Delete {isQuizPage?"Quiz":"Question"}
           </DialogTitle>
           <div className="h-full flex float-right">
             <Button
@@ -43,20 +57,20 @@ export default function DeleteConfirmation({
               onClick={onDelete}
               disabled={isLoading}
             >
-              <Check className="h-5 w-5" />
+              {(isLoading || isQuizLoading)?<Loading/>:<Check className="h-5 w-5" />}
             </Button>
             <Button
               variant="ghost"
               onClick={() => setOpen(false)}
               className="h-full rounded-none px-4 text-red-600 hover:bg-red-50 hover:text-red-700 border-l"
-              disabled={isLoading}
+              disabled={isQuizPage? isQuizLoading: isLoading}
             >
               <X className="h-5 w-5" />
             </Button>
           </div>
         </div>
 
-        <div className="p-4 space-y-4 text-base font-medium p-4 text-center">
+        <div className="p-4 space-y-4 text-base font-medium  text-center">
           Are you want to delete this Item ?
         </div>
       </DialogContent>
