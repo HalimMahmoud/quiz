@@ -23,6 +23,8 @@ export const GROUP_CRUD = {
 };
 
 export const STUDENT_URLS = {
+  TOP_FIVE: `student/top-five`,
+  GET_ALL: `student`,
   GET_STUDENTS: `/student`,
   GET_STUDENT_WITHOUT_GROUP: `/student/without-group`,
   GET_STUDENT_BY_ID: (id: string) => `/student/${id}`,
