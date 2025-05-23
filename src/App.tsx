@@ -27,6 +27,7 @@ import StudentQuiz from "./modules/StudentQuiz/StudentQuiz";
 import Dashboard from "./modules/Dashboard/Dashboard";
 import Quizes from "./modules/AdminModules/Quizes/Quizes";
 import QuizeData from "./modules/AdminModules/Quizes/QuizeData";
+import TestQuestions from "./modules/StudentModules/TestQuestions/TestQuestions";
 
 function App() {
   const dispatch = useDispatch();
@@ -79,6 +80,7 @@ function App() {
         { path: "student-quiz", element: <StudentQuiz /> },
         { path: "dashboard", element: <Dashboard /> },
         { path: "quizes", element: <Quizes /> },
+        { path: "test/:id", element: <TestQuestions /> },
         { path: "quizes/:quizId", element: <QuizeData /> },
         { path: "student-results", element: <StudentsResults /> },
       ],

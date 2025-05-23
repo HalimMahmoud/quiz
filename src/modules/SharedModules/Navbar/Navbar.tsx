@@ -1,12 +1,12 @@
-import {  Menu,CircleX, CircleCheck } from "lucide-react";
+import { Menu, CircleX, CircleCheck } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { useLocation } from "react-router-dom";
-import bills from "../../../assets/bills.svg"
+import bills from "../../../assets/bills.svg";
 import { useState } from "react";
 import { DialogDemo } from "@/modules/AdminModules/Quizes/QuizDialog";
 import { useSelector } from "react-redux";
-import type { RootState } from "@reduxjs/toolkit/query";
+import type { RootState } from "@/store/DefaultStore";
 interface NavbarProps {
   onMenuClick?: () => void;
 }
@@ -20,40 +20,33 @@ const routeTitles: Record<string, string> = {
 };
 
 export default function Navbar({ onMenuClick }: NavbarProps) {
+  const user = useSelector((state: RootState) => state.auth.user);
   const location = useLocation();
   const currentPath = location.pathname;
-  const user =useSelector((state: RootState) => state.auth.user);
-const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+  const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
+
   // Get title based on current route, fallback to "Dashboard"
   const title = routeTitles[currentPath] || "Dashboard";
 
   return (
-    
-      <header className="bg-white border-b border-gray-200 px-4  grow fixed top-0 left-0 right-0 z-50">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="px-1 py-3 w-[178px] border-e flex items-center justify-between">
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={onMenuClick}
-                className="p-2 hover:bg-gray-100"
-              >
-                <Menu className="h-5 w-5" />
-              </Button>
+    <header className="bg-white border-b border-gray-200 px-4  grow fixed top-0 left-0 right-0 z-50">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <div className="px-1 py-3 w-[178px] border-e flex items-center justify-between">
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={onMenuClick}
+              className="p-2 hover:bg-gray-100"
+            >
+              <Menu className="h-5 w-5" />
+            </Button>
 
-              <div className="flex items-center justify-center">
-                <CircleX  size={33} className="-me-1"/>
-                <CircleCheck size={33} />
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <span className="font-semibold text-gray-900 text-lg">{title}</span>
+            <div className="flex items-center justify-center">
+              <CircleX size={33} className="-me-1" />
+              <CircleCheck size={33} />
             </div>
           </div>
-
-          {/* Right section */}
-
           <div className="flex items-center gap-3">
             {user?.role ==="Instructor" && <div className="border-e pe-2 py-3">
               <Button
@@ -86,6 +79,7 @@ const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
             </div>
           </div>
         </div>
-      </header>
+      </div>
+    </header>
   );
 }

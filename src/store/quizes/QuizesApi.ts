@@ -2,6 +2,7 @@ import { createApi } from "@reduxjs/toolkit/query/react";
 import { axiosBaseQuery } from "../../services/api/axiosBaseQuery";
 import { QUIZZES_URLS } from "../../services/api/ApiConfig";
 import type { Quiz } from "@/interfaces/quiz.interface";
+import type { TestResponseObject } from "@/interfaces/test.interfaces";
 
 export const quizApi = createApi({
   reducerPath: "quizApi",
@@ -71,6 +72,32 @@ export const quizApi = createApi({
         method: "GET",
       }),
     }),
+
+    getQuestionsWithoutAnswers: builder.query<TestResponseObject, string>({
+      query: (quizId) => ({
+        url: QUIZZES_URLS.QUESTIONS_WITHOUT_ANSWER(quizId),
+        method: "GET",
+      }),
+    }),
+
+    submitQuiz: builder.mutation<
+      { message: string; timpstamp: string },
+      {
+        id: string;
+        body: {
+          answers: {
+            question: string;
+            answer: string;
+          }[];
+        };
+      }
+    >({
+      query: ({ id, body }) => ({
+        url: QUIZZES_URLS.SUMBIT_QUIZ(id),
+        method: "POST",
+        data: body,
+      }),
+    }),
   }),
 });
 
@@ -83,4 +110,6 @@ export const {
   useDeleteQuizMutation,
   useJoinQuizMutation,
   useGetQuizResultsQuery,
+  useGetQuestionsWithoutAnswersQuery,
+  useSubmitQuizMutation,
 } = quizApi;

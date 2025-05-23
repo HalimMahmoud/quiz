@@ -65,4 +65,6 @@ export const QUIZZES_URLS = {
   DELETE_QUIZ: (id: string) => `/quiz/${id}`,
   JOIN: "/quiz/join",
   GET_RESULTS: "/quiz/result",
+  QUESTIONS_WITHOUT_ANSWER: (id: string) => `quiz/without-answers/${id}`,
+  SUMBIT_QUIZ: (id: string) => `quiz/submit/${id}`,
 };

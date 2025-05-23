@@ -2,6 +2,8 @@ import React from "react";
 import { FiArrowRight } from "react-icons/fi";
 import imageUrl from "../../../assets/Quiz img.png";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import type { RootState } from "@/store/DefaultStore";
 interface CourseCardProps {
   title: string;
   date: string;
@@ -15,6 +17,8 @@ const UpcommingCard: React.FC<CourseCardProps> = ({
   enrolledStudents,
   quizId,
 }) => {
+  const user = useSelector((state: RootState) => state.auth.user);
+
   return (
     <div className="mb-1 course-card w-full max-w-md mx-auto bg-white rounded-xl border border-gray-300 overflow-hidden md:max-w-2xl transition-transform duration-300 hover:scale-[1.02]">
       <div className="flex flex-col md:flex-row">
@@ -37,15 +41,17 @@ const UpcommingCard: React.FC<CourseCardProps> = ({
               No. of student's enrolled:{" "}
               <span className="font-bold">{enrolledStudents}</span>
             </p>
-            <Link
-              to={`/dashboard/quizes/${quizId}`}
-              className="px-4 py-2 text-black rounded-full hover:bg-gray-100 transition-colors flex items-center gap-2"
-            >
-              Open
-              <span className="bg-green-500 p-1 rounded-full">
-                <FiArrowRight className="h-4 w-4 text-white" />
-              </span>
-            </Link>
+            {user?.role === "Instructor" && (
+              <Link
+                to={`/dashboard/quizes/${quizId}`}
+                className="px-4 py-2 text-black rounded-full hover:bg-gray-100 transition-colors flex items-center gap-2"
+              >
+                Open
+                <span className="bg-green-500 p-1 rounded-full">
+                  <FiArrowRight className="h-4 w-4 text-white" />
+                </span>
+              </Link>
+            )}
           </div>
         </div>
       </div>

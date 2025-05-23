@@ -1,4 +1,5 @@
 import {
+  LogOut,
   Home,
   Users,
   Layers,
@@ -77,6 +78,12 @@ const menuItemsInstructor = [
 
 const menuItemsStudent = [
   {
+    id: "dashboard",
+    label: "Dashboard",
+    icon: Home,
+    path: "/dashboard",
+  },
+  {
     id: "quizzes",
     label: "Quizzes",
     icon: ClipboardList,
@@ -97,15 +104,7 @@ const menuItemsStudent = [
 ];
 export default function Sidebar({ className }: SidebarProps) {
   const user = useSelector((state: RootState) => state.auth.user);
-  const navigate=useNavigate();
-  const dispatch=useDispatch();
-  const logout=() => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-     const payload = { user:null  , token:null  }
-          dispatch(setUser(payload))
-    navigate("/login")
-  }
+  const navigate = useNavigate();
 
   const [menuItems, setMenuItems] = useState<menuItemsProp[]>();
 
@@ -148,20 +147,18 @@ export default function Sidebar({ className }: SidebarProps) {
               </li>
             );
           })}
-          <li>
-                <span
-                  onClick={logout}
-                  className="w-full cursor-pointer flex items-center gap-3 px-6 py-5 text-left transition-colors border-b"
-                >
-                  <LogOut
-                    size={35}
-                    className={`${
-                        "bg-[#FFEDDF] text-black"
-                    } rounded-md `}
-                  />
-                  <span className="text-sm">Logout</span>
-                </span>
-              </li>
+          <li
+            className="w-full flex items-center gap-3 px-6 py-5 text-left transition-colors border-b cursor-pointer"
+            onClick={() => {
+              localStorage.removeItem("token");
+              localStorage.removeItem("user");
+              window.location.reload();
+            }}
+          >
+            <LogOut size={35} className="bg-[#FFEDDF] text-black rounded-md" />
+            <span className="text-sm">Logout</span>
+          </li>
+
         </ul>
       </nav>
     </aside>
