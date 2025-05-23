@@ -5,6 +5,8 @@ import { useLocation } from "react-router-dom";
 import bills from "../../../assets/bills.svg"
 import { useState } from "react";
 import { DialogDemo } from "@/modules/AdminModules/Quizes/QuizDialog";
+import { useSelector } from "react-redux";
+import type { RootState } from "@reduxjs/toolkit/query";
 interface NavbarProps {
   onMenuClick?: () => void;
 }
@@ -20,6 +22,7 @@ const routeTitles: Record<string, string> = {
 export default function Navbar({ onMenuClick }: NavbarProps) {
   const location = useLocation();
   const currentPath = location.pathname;
+  const user =useSelector((state: RootState) => state.auth.user);
 const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
   // Get title based on current route, fallback to "Dashboard"
   const title = routeTitles[currentPath] || "Dashboard";
@@ -52,7 +55,7 @@ const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
           {/* Right section */}
 
           <div className="flex items-center gap-3">
-            <div className="border-e pe-2 py-3">
+            {user?.role ==="Instructor" && <div className="border-e pe-2 py-3">
               <Button
                 variant="outline"
                 size="sm"
@@ -65,7 +68,7 @@ const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
               </Button>
                       <DialogDemo isCreateDialogOpen={isCreateDialogOpen} setIsCreateDialogOpen={setIsCreateDialogOpen}/>
 
-            </div>
+            </div>}
 
             <div className="flex items-center gap-2">
               <Avatar className="w-8 h-8">
@@ -74,10 +77,10 @@ const [isCreateDialogOpen, setIsCreateDialogOpen] = useState(false);
               </Avatar>
               <div className="flex flex-col">
                 <span className="text-sm font-medium text-gray-900">
-                  Nwabuikwu Chizuruoke
+                  {user?.first_name} {user?.last_name}
                 </span>
                 <span className="text-xs text-green-600 font-medium">
-                  Tutor
+                  {user?.role === "Instructor" ? "Instructor" : "Student"}
                 </span>
               </div>
             </div>
