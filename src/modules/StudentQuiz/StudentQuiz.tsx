@@ -63,7 +63,7 @@ const StudentQuiz = () => {
       const response = await privateAxiosInstance.post(STUDENT_QUIZ.JOIN, {
         code,
       });
-      navigate(`/dashboard/test/${response.data.quiz}`);
+      navigate(`/dashboard/test/${response.data.data.quiz}`);
       setJoin(response.data);
     } catch (error) {
       console.log("join");
