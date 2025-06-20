@@ -1,6 +1,10 @@
 import { Toaster } from "sonner";
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  // createBrowserRouter,
+  createHashRouter,
+  RouterProvider,
+} from "react-router-dom";
 import AuthLayout from "./modules/SharedModules/AuthLayout/AuthLayout";
 import Register from "./modules/AdminModules/Authentication/Register/Register";
 import ChangePassword from "./modules/AdminModules/Authentication/ChangePassword/ChangePassword";
@@ -46,7 +50,7 @@ function App() {
       dispatch(clearUser());
     }
   }, [token, user, dispatch, decodedUser]);
-  const router = createBrowserRouter([
+  const router = createHashRouter([
     {
       path: "/",
       element: <AuthLayout />,
