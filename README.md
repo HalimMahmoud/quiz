@@ -1,54 +1,61 @@
-# React + TypeScript + Vite
+# Quiz App 🧠✨
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+An interactive quiz application built with **React 19, Vite, TailwindCSS, Redux Toolkit, React Hook Form, and Radix UI**.  
+Supports multiple-choice questions, score tracking, and a smooth modern UI with themes and animations.
 
-Currently, two official plugins are available:
+> 🔑 **Login available for Teachers and Students**
+>
+> - **Teacher**: Create and manage quizzes
+> - **Student**: Attempt quizzes and view results
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 👩‍🏫 **Teacher Mode**: Create, manage, and review quizzes
+- 🧑‍🎓 **Student Mode**: Attempt quizzes and track scores
+- 🎯 Multiple-choice questions
+- 📊 Score tracking with results summary
+- 🌓 Light/Dark theme support (via `next-themes`)
+- 🛠 Form validation with **React Hook Form + Zod**
+- 🔔 Toast notifications (via `react-toastify` & `sonner`)
+- 🎨 Styled with **TailwindCSS v4** + utility helpers (`clsx`, `tailwind-merge`)
+- ⚡ Smooth animations with `tw-animate-css`
+- 🗂 Organized state management with **Redux Toolkit**
+- 🌍 Deployed easily to GitHub Pages (`gh-pages`)
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+---
+
+## 🛠 Tech Stack
+
+- **Frontend:** React 19 + Vite 6
+- **Styling:** TailwindCSS 4, Radix UI, Lucide Icons
+- **Forms & Validation:** React Hook Form, Zod
+- **State Management:** Redux Toolkit, React Redux
+- **Routing:** React Router v7
+- **Utilities:** Axios, Date-fns, clsx
+- **Notifications:** React Toastify, Sonner
+- **Deployment:** GitHub Pages
+
+---
+
+## 📦 Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/your-username/quiz-app.git
+cd quiz-app
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+npm install
+```
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+Run the app in development:
+
+```bash
+npm run dev
 ```
