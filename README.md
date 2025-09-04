@@ -59,3 +59,15 @@ Run the app in development:
 ```bash
 npm run dev
 ```
+
+## 🔑 Credentials
+
+You can use the following demo accounts to log in:
+
+### 👤 User Account
+- **Email:** `4167blue@powerscrews.com`  
+- **Password:** `Pass@123`
+
+### 🛠️ Admin Account
+- **Email:** `glynnisinquisitive@powerscrews.com`  
+- **Password:** `Admin@123`
